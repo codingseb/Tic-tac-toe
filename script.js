@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const board = document.getElementById('board');
     const message = document.getElementById('message');
     const resetBtn = document.getElementById('resetBtn');
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function createSVGSymbol(type) {
         const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.setAttribute("viewBox", "0 0 100 100");
-        
+
         if (type === 'X') {
             const line1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
             line1.setAttribute("x1", "20");
@@ -59,14 +59,14 @@ document.addEventListener('DOMContentLoaded', function() {
             line1.setAttribute("x2", "80");
             line1.setAttribute("y2", "80");
             line1.classList.add("x-symbol");
-            
+
             const line2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
             line2.setAttribute("x1", "80");
             line2.setAttribute("y1", "20");
             line2.setAttribute("x2", "20");
             line2.setAttribute("y2", "80");
             line2.classList.add("x-symbol");
-            
+
             svg.appendChild(line1);
             svg.appendChild(line2);
         } else {
@@ -75,10 +75,10 @@ document.addEventListener('DOMContentLoaded', function() {
             circle.setAttribute("cy", "50");
             circle.setAttribute("r", "30");
             circle.classList.add("o-symbol");
-            
+
             svg.appendChild(circle);
         }
-        
+
         return svg;
     }
 
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cell = document.querySelectorAll('.cell')[index];
         cell.innerHTML = '';
         cell.appendChild(createSVGSymbol(currentPlayer));
-        
+
         const winningLine = checkWin();
         if (winningLine) {
             gameActive = false;
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             message.textContent = `C'est au tour du joueur ${currentPlayer}`;
-            
+
             if (gameMode === '1player' && currentPlayer === aiSymbol && gameActive) {
                 setTimeout(() => {
                     const aiMove = getBestMove();
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return null;
     }
 
-    themeToggle.addEventListener('change', function() {
+    themeToggle.addEventListener('change', function () {
         if (this.checked) {
             body.classList.remove('light');
             body.classList.add('dark');
@@ -335,36 +335,47 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('chooseO').addEventListener('click', () => setPlayerSymbol('O'));
 
     function handleKeyPress(event) {
-        switch(event.key) {
+        if (event.code.startsWith('Numpad')) {
+            const numpadMap = {
+                'Numpad7': 0, 'Numpad8': 1, 'Numpad9': 2,
+                'Numpad4': 3, 'Numpad5': 4, 'Numpad6': 5,
+                'Numpad1': 6, 'Numpad2': 7, 'Numpad3': 8
+            };
+            const cellIndex = numpadMap[event.code];
+            if (cellIndex !== undefined) {
+                const cell = document.querySelector(`.cell[data-index="${cellIndex}"]`);
+                if (cell) cell.click();
+            }
+            return;
+        }
+    
+        switch(event.key.toLowerCase()) {
             case '1':
-                setGameMode('1player');
+                if (!event.code.startsWith('Numpad')) setGameMode('1player');
                 break;
             case '2':
-                setGameMode('2players');
+                if (!event.code.startsWith('Numpad')) setGameMode('2players');
                 break;
             case 'x':
-            case 'X':
                 setPlayerSymbol('X');
                 break;
             case 'o':
-            case 'O':
                 setPlayerSymbol('O');
                 break;
             case 'f':
-            case 'F':
                 setAIDifficulty('easy');
                 break;
             case 'm':
-            case 'M':
                 setAIDifficulty('medium');
                 break;
             case 'd':
-            case 'D':
                 setAIDifficulty('hard');
                 break;
             case 'r':
-            case 'R':
                 resetGame();
+                break;
+            case 'l':
+                themeToggle.click();
                 break;
         }
     }
