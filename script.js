@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const board = document.getElementById('board');
     const message = document.getElementById('message');
     const resetBtn = document.getElementById('resetBtn');
@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const keyboardIcon = document.getElementById('keyboardIcon');
     const shortcutPopup = document.getElementById('shortcutPopup');
     const closePopup = document.getElementById('closePopup');
+    const languageSelect = document.getElementById('languageSelect');
 
     let currentPlayer = 'O';
     let gameBoard = ['', '', '', '', '', '', '', '', ''];
@@ -18,6 +19,54 @@ document.addEventListener('DOMContentLoaded', function() {
     let aiDifficulty = 'easy';
     let playerSymbol = 'O';
     let aiSymbol = 'X';
+
+    let currentLanguage = localStorage.getItem('language') || 'en';
+    languageSelect.value = currentLanguage;
+
+    function translate(key, ...args) {
+        let text = translations[currentLanguage][key];
+        for (let i = 0; i < args.length; i++) {
+            text = text.replace(`{${i}}`, args[i]);
+        }
+        return text;
+    }
+
+    function updateInterface() {
+        document.querySelector('h1').textContent = translate('title');
+        onePlayerBtn.textContent = translate('onePlayer');
+        twoPlayersBtn.textContent = translate('twoPlayers');
+        document.querySelector('#playerOptions h3:first-of-type').textContent = translate('chooseSymbol');
+        document.querySelector('#playerOptions h3:last-of-type').textContent = translate('chooseDifficulty');
+        document.getElementById('easyAIBtn').textContent = translate('easy');
+        document.getElementById('mediumAIBtn').textContent = translate('medium');
+        document.getElementById('hardAIBtn').textContent = translate('hard');
+        resetBtn.textContent = translate('reset');
+        message.textContent = translate('playerTurn', currentPlayer);
+
+        // Mise à jour de la popup des raccourcis
+        document.querySelector('.popup-content h2').textContent = translate('shortcuts');
+        const shortcutsList = document.querySelector('.popup-content ul');
+        shortcutsList.innerHTML = `
+            <li>${translate('onePlayerShortcut')}</li>
+            <li>${translate('twoPlayersShortcut')}</li>
+            <li>${translate('chooseXShortcut')}</li>
+            <li>${translate('chooseOShortcut')}</li>
+            <li>${translate('easyDifficultyShortcut')}</li>
+            <li>${translate('mediumDifficultyShortcut')}</li>
+            <li>${translate('hardDifficultyShortcut')}</li>
+            <li>${translate('resetShortcut')}</li>
+            <li>${translate('themeToggleShortcut')}</li>
+        `;
+        document.querySelector('.popup-content h3').textContent = translate('numpadPlay');
+        closePopup.textContent = translate('close');
+    }
+
+
+    languageSelect.addEventListener('change', function () {
+        currentLanguage = this.value;
+        localStorage.setItem('language', currentLanguage);
+        updateInterface();
+    });
 
     if (localStorage.getItem('theme') === 'dark') {
         body.classList.add('dark');
@@ -51,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function createSVGSymbol(type) {
         const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.setAttribute("viewBox", "0 0 100 100");
-        
+
         if (type === 'X') {
             const line1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
             line1.setAttribute("x1", "20");
@@ -59,14 +108,14 @@ document.addEventListener('DOMContentLoaded', function() {
             line1.setAttribute("x2", "80");
             line1.setAttribute("y2", "80");
             line1.classList.add("x-symbol");
-            
+
             const line2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
             line2.setAttribute("x1", "80");
             line2.setAttribute("y1", "20");
             line2.setAttribute("x2", "20");
             line2.setAttribute("y2", "80");
             line2.classList.add("x-symbol");
-            
+
             svg.appendChild(line1);
             svg.appendChild(line2);
         } else {
@@ -75,22 +124,22 @@ document.addEventListener('DOMContentLoaded', function() {
             circle.setAttribute("cy", "50");
             circle.setAttribute("r", "30");
             circle.classList.add("o-symbol");
-            
+
             svg.appendChild(circle);
         }
-        
+
         return svg;
     }
 
     function makeMove(index, isAIMove = false) {
         if (gameBoard[index] !== '' || !gameActive) return;
         if (gameMode === '1player' && !isAIMove && currentPlayer !== playerSymbol) return;
-    
+
         gameBoard[index] = currentPlayer;
         const cell = document.querySelectorAll('.cell')[index];
         cell.innerHTML = '';
         cell.appendChild(createSVGSymbol(currentPlayer));
-        
+
         const winningLine = checkWin();
         if (winningLine) {
             gameActive = false;
@@ -98,15 +147,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 winningLine.forEach(index => {
                     document.querySelectorAll('.cell')[index].classList.add('winning-cell');
                 });
-                message.textContent = `Le joueur ${currentPlayer} a gagné !`;
+                message.textContent = translate('playerWin', currentPlayer);
             }, 500);
         } else if (gameBoard.every(cell => cell !== '')) {
-            message.textContent = 'Match nul !';
+            message.textContent = translate('draw');
             gameActive = false;
         } else {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-            message.textContent = `C'est au tour du joueur ${currentPlayer}`;
-            
+            message.textContent = translate('playerTurn', currentPlayer);
+
             if (gameMode === '1player' && currentPlayer === aiSymbol && gameActive) {
                 setTimeout(() => {
                     const aiMove = getBestMove();
@@ -115,7 +164,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-    
 
     function checkWin() {
         const winConditions = [
@@ -136,7 +184,6 @@ document.addEventListener('DOMContentLoaded', function() {
         gameBoard = ['', '', '', '', '', '', '', '', ''];
         gameActive = true;
         currentPlayer = 'O';
-        message.textContent = `C'est au tour du joueur ${currentPlayer}`;
         document.querySelectorAll('.cell').forEach(cell => {
             cell.innerHTML = '';
             cell.classList.remove('winning-cell');
@@ -144,6 +191,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.getElementById('chooseX').classList.toggle('selected', playerSymbol === 'X');
         document.getElementById('chooseO').classList.toggle('selected', playerSymbol === 'O');
+
+        updateInterface();
 
         if (gameMode === '1player' && playerSymbol === 'X') {
             setTimeout(() => {
@@ -242,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return null;
     }
 
-    themeToggle.addEventListener('change', function() {
+    themeToggle.addEventListener('change', function () {
         if (this.checked) {
             body.classList.remove('light');
             body.classList.add('dark');
@@ -281,7 +330,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('easyAIBtn').addEventListener('click', () => setAIDifficulty('easy'));
     document.getElementById('mediumAIBtn').addEventListener('click', () => setAIDifficulty('medium'));
     document.getElementById('hardAIBtn').addEventListener('click', () => setAIDifficulty('hard'));
-    
+
     function setPlayerSymbol(symbol) {
         playerSymbol = symbol;
         aiSymbol = symbol === 'X' ? 'O' : 'X';
@@ -289,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('chooseO').classList.toggle('selected', symbol === 'O');
         resetGame();
     }
-    
+
     document.getElementById('chooseX').addEventListener('click', () => setPlayerSymbol('X'));
     document.getElementById('chooseO').addEventListener('click', () => setPlayerSymbol('O'));
 
@@ -307,8 +356,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             return;
         }
-    
-        switch(event.key.toLowerCase()) {
+
+        switch (event.key.toLowerCase()) {
             case '1':
                 if (!event.code.startsWith('Numpad')) setGameMode('1player');
                 break;
@@ -321,13 +370,13 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'o':
                 setPlayerSymbol('O');
                 break;
-            case 'f':
+            case 'e':
                 setAIDifficulty('easy');
                 break;
             case 'm':
                 setAIDifficulty('medium');
                 break;
-            case 'd':
+            case 'h':
                 setAIDifficulty('hard');
                 break;
             case 'r':
@@ -338,27 +387,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
         }
     }
-    
+
     document.addEventListener('keydown', handleKeyPress);
-    
+
     keyboardIcon.addEventListener('click', () => {
         shortcutPopup.style.display = 'block';
     });
-    
+
     closePopup.addEventListener('click', () => {
         shortcutPopup.style.display = 'none';
     });
-    
+
     window.addEventListener('click', (event) => {
         if (event.target === shortcutPopup) {
             shortcutPopup.style.display = 'none';
         }
     });
-    
+
     createBoard();
     resetBtn.addEventListener('click', resetGame);
     setAIDifficulty('easy');
     setPlayerSymbol('O');
     setGameMode('1player');
     resetGame();
-})    
+    updateInterface();
+});

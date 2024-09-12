@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,20 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
+
 <body>
     <div class="top-right-controls">
         <div id="keyboardIcon" class="icon">
             <i class="fas fa-keyboard"></i>
         </div>
+        <select id="languageSelect">
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="es">Español</option>
+            <option value="de">Deutsch</option>
+            <option value="pt">Português</option>
+            <option value="it">Italiano</option>
+          </select>
         <label class="switch">
             <input type="checkbox" id="themeToggle">
             <span class="slider round">
@@ -22,12 +32,12 @@
     </div>
 
     <h1>Tic Tac Toe</h1>
-    
+
     <div id="gameOptions">
         <button id="onePlayerBtn" class="selected">1 Joueur</button>
         <button id="twoPlayersBtn">2 Joueurs</button>
     </div>
-    
+
     <div id="playerOptions">
         <h3>Choisissez votre symbole :</h3>
         <div class="symbol-choice">
@@ -48,7 +58,7 @@
         <button id="mediumAIBtn">Moyen</button>
         <button id="hardAIBtn">Difficile</button>
     </div>
-    
+
     <div id="game-container">
         <div id="board">
             <!-- Les cellules seront ajoutées ici dynamiquement -->
@@ -57,9 +67,9 @@
             <!-- La ligne de victoire sera ajoutée ici dynamiquement -->
         </svg>
     </div>
-    
+
     <p id="message"></p>
-    
+
     <button id="resetBtn">Recommencer</button>
 
     <div id="shortcutPopup" class="popup">
@@ -98,6 +108,8 @@
         </div>
     </div>
 
+    <script src="translations.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
