@@ -99,13 +99,21 @@ input:checked + .slider .moon-icon {
     opacity: 0;
 }
 
-#board {
+#game-container {
     position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+#board {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: grid;
     grid-template-columns: repeat(3, 100px);
     grid-gap: 0;
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
 }
 
 .cell {
@@ -152,10 +160,76 @@ button:hover {
     transform: scale(1.05);
 }
 
-.selected {
+button.selected {
     background-color: #3700b3;
     border: 2px solid #bb86fc;
     box-shadow: 0 0 10px #bb86fc;
+}
+
+.symbol-choice {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.symbol-button {
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.symbol-button svg {
+    width: 80%;
+    height: 80%;
+}
+
+.symbol-button.selected {
+    box-shadow: 0 0 10px #bb86fc;
+}
+
+.symbol-button:hover {
+    transform: scale(1.05);
+}
+
+.symbol-button .o-symbol,
+.symbol-button .x-symbol {
+    stroke-width: 8;
+    transition: stroke-width 0.3s ease;
+}
+
+.symbol-button.selected .o-symbol,
+.symbol-button.selected .x-symbol {
+    stroke-width: 14;
+}
+
+.symbol-button .o-symbol {
+    stroke: #e74c3c;
+    fill: none;
+}
+
+.symbol-button .x-symbol {
+    stroke: #3498db;
+    stroke-linecap: round;
+}
+
+.cell .o-symbol {
+    stroke: #e74c3c;
+    stroke-width: 12;
+    fill: none;
+}
+
+.cell .x-symbol {
+    stroke: #3498db;
+    stroke-width: 12;
+    stroke-linecap: round;
 }
 
 body.light {
@@ -181,23 +255,18 @@ body.light button:hover {
     background-color: #3a78c2;
 }
 
-body.light .selected {
+body.light button.selected {
     background-color: #3a78c2;
     border: 2px solid #4a90e2;
     box-shadow: 0 0 10px #4a90e2;
 }
 
-.win-line {
-    position: absolute;
-    background-color: #2ecc71;
-    height: 5px;
-    animation: drawLine 0.5s forwards;
-    z-index: 2;
+body.light .symbol-button {
+    border-color: #121212;
 }
 
-@keyframes drawLine {
-    0% { width: 0; }
-    100% { width: 100%; }
+body.light .symbol-button.selected {
+    box-shadow: 0 0 10px #4a90e2;
 }
 
 @keyframes pulsate {
@@ -208,18 +277,6 @@ body.light .selected {
 
 .winning-cell svg {
     animation: pulsate 0.5s infinite;
-}
-
-.cell .x-symbol {
-    stroke: #3498db;
-    stroke-width: 12;
-    stroke-linecap: round;
-}
-
-.cell .o-symbol {
-    stroke: #e74c3c;
-    stroke-width: 12;
-    fill: none;
 }
 
 .popup {
