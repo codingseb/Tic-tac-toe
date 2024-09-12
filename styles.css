@@ -13,11 +13,12 @@ body {
 }
 
 #board {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(3, 100px);
-    grid-gap: 5px;
-    width: 310px;
-    margin-bottom: 20px;
+    grid-gap: 0px;
+    width: 300px;
+    height: 300px;
 }
 
 .cell {
@@ -25,9 +26,9 @@ body {
     height: 100px;
     border: 2px solid #ffffff;
     background-color: #1e1e1e;
-    font-size: 48px;
-    text-align: center;
-    line-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.1s;
 }
@@ -35,6 +36,11 @@ body {
 .cell:hover {
     background-color: #2e2e2e;
     transform: scale(1.05);
+}
+
+.cell svg {
+    width: 80%;
+    height: 80%;
 }
 
 button {
@@ -60,7 +66,6 @@ button:hover {
     box-shadow: 0 0 10px #bb86fc;
 }
 
-/* Switch styles */
 .switch {
     position: absolute;
     top: 20px;
@@ -136,7 +141,6 @@ input:checked + .slider .moon-icon {
     opacity: 0;
 }
 
-/* Light mode styles */
 body.light {
     background-color: #f0f0f0;
     color: #121212;
@@ -145,6 +149,11 @@ body.light {
 body.light .cell {
     border-color: #121212;
     background-color: #e0e0e0;
+}
+
+body.light .cell:hover {
+    background-color: #d0d0d0;
+    transform: scale(1.05);
 }
 
 body.light button {
@@ -162,11 +171,83 @@ body.light .selected {
     box-shadow: 0 0 10px #4a90e2;
 }
 
-#gameOptions, #playerOptions {
-    margin-bottom: 20px;
+.win-line {
+    position: absolute;
+    background-color: #2ecc71;
+    height: 5px;
+    animation: drawLine 0.5s forwards;
+    z-index: 2;
 }
 
-#message {
+@keyframes drawLine {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+@keyframes pulsate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.winning-cell svg {
+    animation: pulsate 0.5s infinite;
+}
+
+.cell .x-symbol {
+    stroke: #3498db;
+    stroke-width: 12;
+    stroke-linecap: round;
+}
+
+.cell .o-symbol {
+    stroke: #e74c3c;
+    stroke-width: 12;
+    fill: none;
+}
+
+.icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
     font-size: 24px;
-    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+}
+
+body.dark .popup-content {
+    background-color: #333;
+    color: #fff;
+}
+
+#closePopup {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+#closePopup:hover {
+    background-color: #45a049;
 }
