@@ -103,7 +103,7 @@ input:checked + .slider .moon-icon {
     position: relative;
     display: grid;
     grid-template-columns: repeat(3, 100px);
-    grid-gap: 0px;
+    grid-gap: 0;
     width: 300px;
     height: 300px;
 }
@@ -120,9 +120,14 @@ input:checked + .slider .moon-icon {
     transition: background-color 0.3s, transform 0.1s;
 }
 
+.cell:nth-child(n+4) {
+    margin-top: -2px;
+}
+
 .cell:hover {
     background-color: #2e2e2e;
     transform: scale(1.05);
+    z-index: 1;
 }
 
 .cell svg {
@@ -165,7 +170,6 @@ body.light .cell {
 
 body.light .cell:hover {
     background-color: #d0d0d0;
-    transform: scale(1.05);
 }
 
 body.light button {
@@ -238,8 +242,6 @@ body.light .selected {
     width: 80%;
     max-width: 500px;
     text-align: left;
-    max-height: 80vh; /* Limite la hauteur à 80% de la hauteur de la fenêtre */
-    overflow-y: auto; /* Ajoute une barre de défilement si nécessaire */
 }
 
 .popup-content h2 {
@@ -261,6 +263,20 @@ body.dark .popup-content {
     color: #fff;
 }
 
+#closePopup {
+    display: block;
+    margin: 0 auto;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+#closePopup:hover {
+    background-color: #45a049;
+}
+
 .numpad-layout {
     margin: 20px auto;
     border-collapse: collapse;
@@ -276,18 +292,4 @@ body.dark .popup-content {
 
 body.dark .numpad-layout td {
     border-color: #555;
-}
-
-#closePopup {
-    display: block;
-    margin: 0 auto;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-}
-
-#closePopup:hover {
-    background-color: #45a049;
 }
