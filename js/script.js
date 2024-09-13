@@ -1,3 +1,11 @@
+let currentPlayer = 'O';
+let gameBoard = ['', '', '', '', '', '', '', '', ''];
+let gameActive = true;
+let gameMode = '1player';
+let aiDifficulty = 'easy';
+let playerSymbol = 'O';
+let aiSymbol = 'X';
+
 document.addEventListener('DOMContentLoaded', function () {
     const board = document.getElementById('board');
     const message = document.getElementById('message');
@@ -10,14 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const keyboardIcon = document.getElementById('keyboardIcon');
     const shortcutPopup = document.getElementById('shortcutPopup');
     const closePopup = document.getElementById('closePopup');
-
-    let currentPlayer = 'O';
-    let gameBoard = ['', '', '', '', '', '', '', '', ''];
-    let gameActive = true;
-    let gameMode = '1player';
-    let aiDifficulty = 'easy';
-    let playerSymbol = 'O';
-    let aiSymbol = 'X';
 
     initializeLanguageSelect();
 
