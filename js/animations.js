@@ -122,5 +122,23 @@ function createDrawAnimation() {
         direction: 'alternate',
         duration: 300,
         loop: 2
+    }).add({
+        targets: handshakeIcon,
+        translateY: 0,
+        direction: 'alternate',
+        duration: 300,
+        loop: 2
+    }).add({
+        targets: handshakeIcon,
+        translateY: -20,
+        direction: 'alternate',
+        duration: 300,
+        loop: 2
+    }).add({
+        targets: handshakeIcon,
+        translateY: 0,
+        direction: 'alternate',
+        duration: 300,
+        loop: 2
     });
 }
