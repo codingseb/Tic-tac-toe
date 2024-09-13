@@ -83,6 +83,7 @@ function createDrawAnimation() {
     blueX.querySelectorAll('.x-symbol').forEach(line => {
         line.style.stroke = '#0074d9';
         line.style.strokeWidth = '12'; 
+        line.style.strokeLinecap = 'round';
     });
     animationContainer.appendChild(blueX);
 
