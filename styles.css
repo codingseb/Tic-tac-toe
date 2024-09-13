@@ -345,15 +345,9 @@ body.dark .popup-content {
 #closePopup {
     display: block;
     margin: 0 auto;
-    background-color: #4CAF50;
-    color: white;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-}
-
-#closePopup:hover {
-    background-color: #45a049;
 }
 
 .numpad-layout {
