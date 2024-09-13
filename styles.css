@@ -167,6 +167,13 @@ button.selected {
     box-shadow: 0 0 10px #bb86fc;
 }
 
+.player-mode-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
 .symbol-choice {
     display: flex;
     justify-content: center;
