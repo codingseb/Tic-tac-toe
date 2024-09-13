@@ -39,6 +39,9 @@ function handleKeyPress(event) {
             resetGame();
             break;
         case 'l':
+            cycleLanguage();
+            break;
+        case 't':
             themeToggle.click();
             break;
     }

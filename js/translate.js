@@ -44,6 +44,7 @@ function updateInterface() {
         <li>${translate('mediumDifficultyShortcut')}</li>
         <li>${translate('hardDifficultyShortcut')}</li>
         <li>${translate('resetShortcut')}</li>
+        <li>${translate('languageShortcut')}</li>
         <li>${translate('themeToggleShortcut')}</li>
     `;
     document.querySelector('.popup-content h3').textContent = translate('numpadPlay');
@@ -54,4 +55,13 @@ function setLanguage(lang) {
     currentLanguage = lang;
     localStorage.setItem('language', lang);
     updateInterface();
+}
+
+function cycleLanguage() {
+    const languageSelect = document.getElementById('languageSelect');
+    const languages = Array.from(languageSelect.options).map(option => option.value);
+    const currentIndex = languages.indexOf(currentLanguage);
+    const nextIndex = (currentIndex + 1) % languages.length;
+    setLanguage(languages[nextIndex]);
+    languageSelect.value = languages[nextIndex];
 }
