@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const keyboardIcon = document.getElementById('keyboardIcon');
     const shortcutPopup = document.getElementById('shortcutPopup');
     const closePopup = document.getElementById('closePopup');
-    const languageSelect = document.getElementById('languageSelect');
 
     let currentPlayer = 'O';
     let gameBoard = ['', '', '', '', '', '', '', '', ''];
@@ -20,13 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let playerSymbol = 'O';
     let aiSymbol = 'X';
 
-    languageSelect.value = currentLanguage;
-
-    languageSelect.addEventListener('change', function () {
-        currentLanguage = this.value;
-        localStorage.setItem('language', currentLanguage);
-        updateInterface();
-    });
+    initializeLanguageSelect();
 
     if (localStorage.getItem('theme') === 'dark') {
         body.classList.add('dark');

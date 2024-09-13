@@ -1,5 +1,17 @@
 let currentLanguage = localStorage.getItem('language') || 'en';
 
+function initializeLanguageSelect() {
+    const languageSelect = document.getElementById('languageSelect');
+    
+    // Définir la langue initiale
+    languageSelect.value = currentLanguage;
+
+    // Ajouter un écouteur d'événements pour le changement de langue
+    languageSelect.addEventListener('change', function() {
+        setLanguage(this.value);
+    });
+}
+
 function translate(key, ...args) {
     let text = translations[currentLanguage][key];
     for (let i = 0; i < args.length; i++) {
