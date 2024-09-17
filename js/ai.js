@@ -39,7 +39,7 @@ function getBestMoveHard() {
 }
 
 function minimax(board, depth, isMaximizing, alpha, beta) {
-    if (depth === MAX_DEPTH || checkWinForMinimax(board) !== null) {
+    if (depth === aiMaxDepth || checkWinForMinimax(board) !== null) {
         return evaluateBoard(board);
     }
 

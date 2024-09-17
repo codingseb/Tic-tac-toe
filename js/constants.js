@@ -7,7 +7,6 @@ const playerOptions = document.getElementById('playerOptions');
 const keyboardIcon = document.getElementById('keyboardIcon');
 const shortcutPopup = document.getElementById('shortcutPopup');
 const closePopup = document.getElementById('closePopup');
-const MAX_DEPTH = 5;
 const allWinConditions = 
 { 
     "3": 
@@ -30,6 +29,7 @@ const allWinConditions =
         ]
 };
 
+let aiMaxDepth = 4;
 let boardSize = 3;
 let currentPlayer = 'O';
 let gameBoard = ['', '', '', '', '', '', '', '', ''];
