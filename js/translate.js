@@ -50,7 +50,6 @@ function updateInterface() {
         <li>${translate('arrowKeysPlay')}</li>
         <li>${translate('spacePlay')}</li>
     `;
-    document.querySelector('.popup-content h3').textContent = translate('numpadPlay');
     closePopup.textContent = translate('close');
 }
 
