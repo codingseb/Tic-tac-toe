@@ -3,8 +3,13 @@ function getBestMove() {
         return getRandomMove();
     } else if (aiDifficulty === 'medium') {
         return Math.random() < 0.5 ? getBestMoveHard() : getRandomMove();
-    } else {
-        return getBestMoveHard();
+    } else { // Hard difficulty
+        // Check if it's the first move (empty board)
+        if (gameBoard.every(cell => cell === '')) {
+            return getRandomMove();
+        } else {
+            return getBestMoveHard();
+        }
     }
 }
 

@@ -1,7 +1,11 @@
 function handleCellClick(e) {
     const index = e.target.getAttribute('data-index');
-    if (gameBoard[index] === '' && gameActive) {
-        makeMove(index);
+    if (gameActive) {
+        if (gameBoard[index] === '') {
+            makeMove(index);
+        }
+    } else {
+        resetGame();
     }
 }
 
