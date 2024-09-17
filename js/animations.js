@@ -3,6 +3,8 @@ function createFirework(winner) {
     const particleCount = 50;
     const colors = winner === 'O' ? ['#ff4136', '#ff5a1b', '#ff7f00'] : ['#0074d9', '#7fbfff', '#3996cc'];
 
+    animationInProgress = true;
+
     for (let f = 0; f < fireworkCount; f++) {
         const firework = document.createElement('div');
         firework.className = 'firework';
@@ -41,11 +43,15 @@ function createFirework(winner) {
 
         setTimeout(() => {
             firework.remove();
+            animationInProgress = false;
         }, 3000);
     }
 }
 
 function createDrawAnimation() {
+
+    animationInProgress = true;
+
     const animationContainer = document.createElement('div');
     animationContainer.style.position = 'fixed';
     animationContainer.style.top = '0';
@@ -97,6 +103,7 @@ function createDrawAnimation() {
         complete: function() {
             setTimeout(() => {
                 animationContainer.remove();
+                animationInProgress = false;
             }, 3000);
         }
     }).add({

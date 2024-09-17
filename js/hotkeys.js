@@ -66,7 +66,7 @@ function handleKeyboardNavigation(key) {
             if (selectedCellIndex % boardSize < boardSize - 1) selectedCellIndex++;
             break;
         case ' ':
-            makeMove(selectedCellIndex);
+            playCell(selectedCellIndex);
             break;
     }
     updateSelectedCell();

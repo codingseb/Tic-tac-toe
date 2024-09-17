@@ -1,5 +1,13 @@
 function handleCellClick(e) {
     const index = e.target.getAttribute('data-index');
+
+    playCell(index);
+}
+
+function playCell(index){
+
+    if(animationInProgress) return;
+
     if (gameActive) {
         if (gameBoard[index] === '') {
             makeMove(index);

@@ -61,3 +61,4 @@ let aiSymbol = 'X';
 let winConditions = allWinConditions["3"];
 let keyboardPlayEnabled = false;
 let selectedCellIndex = 0;
+let animationInProgress = false;
