@@ -1,7 +1,7 @@
 function createFirework(winner) {
     const fireworkCount = 20;
     const particleCount = 50;
-    const colors = winner === 'O' ? ['#ff4136', '#ff851b', '#ffdc00'] : ['#0074d9', '#7fdbff', '#39cccc'];
+    const colors = winner === 'O' ? ['#ff4136', '#ff5a1b', '#ff7f00'] : ['#0074d9', '#7fbfff', '#3996cc'];
 
     for (let f = 0; f < fireworkCount; f++) {
         const firework = document.createElement('div');
@@ -17,13 +17,7 @@ function createFirework(winner) {
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
-            if (winner === 'O') {
-                particle.style.borderRadius = '50%';
-            } else {
-                particle.innerHTML = '×';
-                particle.style.fontSize = '20px';
-                particle.style.fontWeight = 'bold';
-            }
+            particle.style.borderRadius = '50%';
             particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
             firework.appendChild(particle);
 
