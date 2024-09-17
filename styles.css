@@ -107,7 +107,7 @@ input:checked+.slider .moon-icon {
 }
 
 #board {
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     left: 0;
     display: grid;
@@ -401,3 +401,64 @@ body.light #languageSelect {
     height: 10px;
     transform: translate(-50%, -50%);
 }
+
+@media (max-width: 768px) {
+    body {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .top-right-controls {
+      position: relative;
+      display: inline-flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+  
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+  
+    #game-container {
+      width: 240px;
+      height: 240px;
+    }
+
+    #board {
+        grid-template-columns: repeat(3, 80px);
+    }
+  
+    .cell {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    button {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  
+    #playerOptions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .symbol-choice {
+      margin-bottom: 10px;
+    }
+
+    #message {
+        display: flex;
+    }
+  
+    #resetBtn {
+      margin-top: 10px;
+      display: flex;
+    }
+  }
