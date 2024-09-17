@@ -137,6 +137,7 @@ input:checked+.slider .moon-icon {
 .cell:hover {
     background-color: #2e2e2e;
     transform: scale(1.05);
+    border-bottom: 2px solid #ffffff;
     z-index: 1;
 }
 
