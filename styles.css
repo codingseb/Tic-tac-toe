@@ -237,6 +237,23 @@ body.light .selected {
     border: 1px solid #888;
     width: 80%;
     max-width: 500px;
+    text-align: left;
+    max-height: 80vh; /* Limite la hauteur à 80% de la hauteur de la fenêtre */
+    overflow-y: auto; /* Ajoute une barre de défilement si nécessaire */
+}
+
+.popup-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.popup-content ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.popup-content li {
+    margin-bottom: 10px;
 }
 
 body.dark .popup-content {
@@ -244,7 +261,26 @@ body.dark .popup-content {
     color: #fff;
 }
 
+.numpad-layout {
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.numpad-layout td {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    font-weight: bold;
+}
+
+body.dark .numpad-layout td {
+    border-color: #555;
+}
+
 #closePopup {
+    display: block;
+    margin: 0 auto;
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
