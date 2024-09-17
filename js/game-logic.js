@@ -58,12 +58,6 @@ function updateBoardStyles(size) {
     document.head.appendChild(styleElement);
 }
 
-function updateSelectedCell() {
-    document.querySelectorAll('.cell').forEach((cell, index) => {
-        cell.classList.toggle('selected', index === selectedCellIndex);
-    });
-}
-
 function makeMove(index, isAIMove = false) {
     if (gameBoard[index] !== '' || !gameActive) return;
     if (gameMode === '1player' && !isAIMove && currentPlayer !== playerSymbol) return;

@@ -32,6 +32,7 @@ function updateInterface() {
     resetBtn.textContent = translate('reset');
     message.textContent = translate('playerTurn', currentPlayer);
     toWinLabel.textContent = translate('toWin'),
+    document.getElementById('keyboardPlayIndicator').textContent = translate(keyboardPlayEnabled ? 'keyboardPlayEnabled' : 'keyboardPlayDisabled');
 
     // Mise à jour de la popup des raccourcis
     document.querySelector('.popup-content h2').textContent = translate('shortcuts');
@@ -47,6 +48,7 @@ function updateInterface() {
         <li>${translate('resetShortcut')}</li>
         <li>${translate('languageShortcut')}</li>
         <li>${translate('themeToggleShortcut')}</li>
+        <li>${translate('keyboardPlayShortcut')}</li>
         <li>${translate('arrowKeysPlay')}</li>
         <li>${translate('spacePlay')}</li>
     `;

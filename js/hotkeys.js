@@ -1,25 +1,17 @@
 function handleKeyPress(event) {
     if (event.target.tagName === 'INPUT') return;
     
-    switch(event.key) {
-        case 'ArrowUp':
-            selectedCellIndex = Math.max(0, selectedCellIndex - boardSize);
-            updateSelectedCell();
+    switch(event.key.toLowerCase()) {
+        case 'k':
+            toggleKeyboardPlay();
             break;
-        case 'ArrowDown':
-            selectedCellIndex = Math.min(boardSize * boardSize - 1, selectedCellIndex + boardSize);
-            updateSelectedCell();
-            break;
-        case 'ArrowLeft':
-            if (selectedCellIndex % boardSize > 0) {
-                selectedCellIndex--;
-                updateSelectedCell();
-            }
-            break;
-        case 'ArrowRight':
-            if (selectedCellIndex % boardSize < boardSize - 1) {
-                selectedCellIndex++;
-                updateSelectedCell();
+        case 'arrowup':
+        case 'arrowdown':
+        case 'arrowleft':
+        case 'arrowright':
+        case ' ':
+            if (keyboardPlayEnabled) {
+                handleKeyboardNavigation(event.key);
             }
             break;
         case ' ':
@@ -58,3 +50,53 @@ function handleKeyPress(event) {
             break;
     }
 }
+
+function handleKeyboardNavigation(key) {
+    switch(key) {
+        case 'ArrowUp':
+            selectedCellIndex = Math.max(0, selectedCellIndex - boardSize);
+            break;
+        case 'ArrowDown':
+            selectedCellIndex = Math.min(boardSize * boardSize - 1, selectedCellIndex + boardSize);
+            break;
+        case 'ArrowLeft':
+            if (selectedCellIndex % boardSize > 0) selectedCellIndex--;
+            break;
+        case 'ArrowRight':
+            if (selectedCellIndex % boardSize < boardSize - 1) selectedCellIndex++;
+            break;
+        case ' ':
+            makeMove(selectedCellIndex);
+            break;
+    }
+    updateSelectedCell();
+}
+
+function toggleKeyboardPlay() {
+    keyboardPlayEnabled = !keyboardPlayEnabled;
+    if (keyboardPlayEnabled) {
+        updateSelectedCell();
+    } else {
+        clearSelectedCell();
+    }
+    updateKeyboardPlayIndicator();
+}
+
+function updateSelectedCell() {
+    if (keyboardPlayEnabled) {
+        document.querySelectorAll('.cell').forEach((cell, index) => {
+            cell.classList.toggle('selected', index === selectedCellIndex);
+        });
+    }
+}
+
+function clearSelectedCell() {
+    document.querySelectorAll('.cell').forEach(cell => {
+        cell.classList.remove('selected');
+    });
+}
+
+function updateKeyboardPlayIndicator() {
+    document.getElementById('keyboardPlayIndicator').textContent = translate(keyboardPlayEnabled ? 'keyboardPlayEnabled' : 'keyboardPlayDisabled');
+}
+

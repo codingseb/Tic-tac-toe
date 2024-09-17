@@ -26,6 +26,9 @@ const translations = {
         themeToggleShortcut: "T : Toggle light/dark mode",
         arrowKeysPlay: "Arrow keys : Select a cell",
         spacePlay: "Space : Place a piece",
+        keyboardPlayShortcut: "K: Toggle keyboard play",
+        keyboardPlayEnabled: "Keyboard: Enabled",
+        keyboardPlayDisabled: "Keyboard: Disabled",
         close: "Close"
     },
     fr: {
@@ -55,6 +58,9 @@ const translations = {
         themeToggleShortcut: "T : Basculer entre mode clair/sombre",
         arrowKeysPlay: "Flèches : Sélectionner une cellule",
         spacePlay: "Espace : Placer une pièce",
+        keyboardPlayShortcut: "K : Activer/désactiver le jeu au clavier",
+        keyboardPlayEnabled: "Clavier : Activé",
+        keyboardPlayDisabled: "Clavier : Désactivé",
         close: "Fermer"
     },
     es: {
@@ -84,6 +90,9 @@ const translations = {
         themeToggleShortcut: "T : Cambiar modo claro/oscuro",
         arrowKeysPlay: "Teclas de flecha : Seleccionar una celda",
         spacePlay: "Espacio : Colocar una pieza",
+        keyboardPlayShortcut: "K: Alternar juego por teclado",
+        keyboardPlayEnabled: "Teclado: Activado",
+        keyboardPlayDisabled: "Teclado: Desactivado",
         close: "Cerrar"
     },
     de: {
@@ -113,6 +122,9 @@ const translations = {
         themeToggleShortcut: "T : Hell-/Dunkelmodus umschalten",
         arrowKeysPlay: "Pfeiltasten : Zelle auswählen",
         spacePlay: "Leertaste : Spielstein setzen",
+        keyboardPlayShortcut: "K: Tastaturspiel umschalten",
+        keyboardPlayEnabled: "Tastatur: Aktiviert",
+        keyboardPlayDisabled: "Tastatur: Deaktiviert",
         close: "Schließen"
     },
     pt: {
@@ -142,6 +154,9 @@ const translations = {
         themeToggleShortcut: "T : Alternar modo claro/escuro",
         arrowKeysPlay: "Teclas de seta : Selecionar uma célula",
         spacePlay: "Espaço : Colocar uma peça",
+        keyboardPlayShortcut: "K: Alternar jogo por teclado",
+        keyboardPlayEnabled: "Teclado: Ativado",
+        keyboardPlayDisabled: "Teclado: Desativado",
         close: "Fechar"
     },
     it: {
@@ -170,6 +185,9 @@ const translations = {
         languageShortcut: "L : Cambia lingua",
         arrowKeysPlay: "Tasti freccia : Seleziona una cella",
         spacePlay: "Spazio : Posiziona un pezzo",
+        keyboardPlayShortcut: "K: Attiva/disattiva gioco da tastiera",
+        keyboardPlayEnabled: "Tastiera: Attivata",
+        keyboardPlayDisabled: "Tastiera: Disattivata",
         close: "Chiudi"
     }
 };
