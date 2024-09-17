@@ -1,40 +1,65 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-
 <body>
+    <div id="keyboardIcon" class="icon">
+        <i class="fas fa-keyboard"></i>
+    </div>
+    
     <label class="switch">
         <input type="checkbox" id="themeToggle">
         <span class="slider round">
-          <i class="fas fa-moon moon-icon"></i>
-          <i class="fas fa-sun sun-icon"></i>
+            <i class="fas fa-moon moon-icon"></i>
+            <i class="fas fa-sun sun-icon"></i>
         </span>
-      </label>
+    </label>
+
     <h1>Tic Tac Toe</h1>
+    
     <div id="gameOptions">
         <button id="onePlayerBtn" class="selected">1 Joueur</button>
         <button id="twoPlayersBtn">2 Joueurs</button>
     </div>
-    <div id="playerOptions" style="display: none;">
+    
+    <div id="playerOptions">
         <h3>Choisissez votre symbole :</h3>
         <button id="chooseX">X</button>
-        <button id="chooseO">O</button>
+        <button id="chooseO" class="selected">O</button>
         <h3>Choisissez la difficulté :</h3>
-        <button id="easyAIBtn">Facile</button>
+        <button id="easyAIBtn" class="selected">Facile</button>
         <button id="mediumAIBtn">Moyen</button>
         <button id="hardAIBtn">Difficile</button>
     </div>
+    
     <div id="board"></div>
+    
     <p id="message"></p>
+    
     <button id="resetBtn">Recommencer</button>
+
+    <div id="shortcutPopup" class="popup">
+        <div class="popup-content">
+            <h2>Raccourcis clavier</h2>
+            <ul>
+                <li>1 : Mode 1 joueur</li>
+                <li>2 : Mode 2 joueurs</li>
+                <li>X : Choisir X</li>
+                <li>O : Choisir O</li>
+                <li>F : Difficulté facile</li>
+                <li>M : Difficulté moyenne</li>
+                <li>D : Difficulté difficile</li>
+                <li>R : Recommencer</li>
+            </ul>
+            <button id="closePopup">Fermer</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
-
 </html>
