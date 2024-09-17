@@ -90,7 +90,7 @@ function createDrawAnimation() {
     const handshakeIcon = document.createElement('div');
     handshakeIcon.innerHTML = '🤝';
     handshakeIcon.style.position = 'absolute';
-    handshakeIcon.style.fontSize = '60px';
+    handshakeIcon.style.fontSize = '50px';
     handshakeIcon.style.left = '50%';
     handshakeIcon.style.bottom = '40px';
     handshakeIcon.style.transform = 'translateX(-50%) scale(0)';
@@ -107,10 +107,10 @@ function createDrawAnimation() {
         }
     }).add({
         targets: redCircle,
-        translateX: window.innerWidth / 2 - 75
+        translateX: window.innerWidth / 2 - 115
     }).add({
         targets: blueX,
-        translateX: -window.innerWidth / 2 + 75
+        translateX: -window.innerWidth / 2 + 115
     }, '-=1000').add({
         targets: handshakeIcon,
         scale: 1,
@@ -124,7 +124,7 @@ function createDrawAnimation() {
         loop: 2
     }).add({
         targets: handshakeIcon,
-        translateY: 0,
+        translateY: 10,
         direction: 'alternate',
         duration: 300,
         loop: 2
@@ -136,7 +136,7 @@ function createDrawAnimation() {
         loop: 2
     }).add({
         targets: handshakeIcon,
-        translateY: 0,
+        translateY: 2,
         direction: 'alternate',
         duration: 300,
         loop: 2
