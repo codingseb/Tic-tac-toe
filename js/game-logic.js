@@ -1,11 +1,43 @@
 function createBoard() {
-    for (let i = 0; i < 9; i++) {
+    board.innerHTML = ''; 
+    board.style.gridTemplateColumns = `repeat(${boardSize}, ${300 / boardSize}px)`;
+
+    document.documentElement.style.setProperty('--board-size', boardSize);
+
+    for (let i = 0; i < boardSize * boardSize; i++) {
         const cell = document.createElement('div');
         cell.classList.add('cell');
         cell.setAttribute('data-index', i);
         cell.addEventListener('click', handleCellClick);
         board.appendChild(cell);
     }
+
+    updateBoardStyles(boardSize)
+
+    gameBoard = Array(boardSize * boardSize).fill('');
+}
+
+function setBoardSize(size) {
+    boardSize = size;
+    winConditions = allWinConditions[size.toString()];
+    document.querySelectorAll('.board-size-buttons button').forEach(btn => btn.classList.remove('selected'));
+    document.getElementById(`size${size}Btn`).classList.add('selected');
+    createBoard();
+    resetGame();
+}
+
+function updateBoardStyles(size) {
+    const styleElement = document.getElementById('dynamic-board-styles') || document.createElement('style');
+    styleElement.id = 'dynamic-board-styles';
+    
+    const styles = `
+        .cell:nth-last-child(-n+${size}) {
+            border-bottom: 2px solid #ffffff;
+        }
+    `;
+    
+    styleElement.textContent = styles;
+    document.head.appendChild(styleElement);
 }
 
 function makeMove(index, isAIMove = false) {
@@ -45,22 +77,18 @@ function makeMove(index, isAIMove = false) {
 }
 
 function checkWin() {
-    const winConditions = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8],
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-        [0, 4, 8], [2, 4, 6]
-    ];
-
+    
     for (let condition of winConditions) {
         if (condition.every(index => gameBoard[index] === currentPlayer)) {
             return condition;
         }
     }
+
     return null;
 }
 
 function resetGame() {
-    gameBoard = ['', '', '', '', '', '', '', '', ''];
+    gameBoard = Array(boardSize * boardSize).fill('');
     gameActive = true;
     currentPlayer = 'O';
     document.querySelectorAll('.cell').forEach(cell => {

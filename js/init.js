@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('mediumAIBtn').addEventListener('click', () => setAIDifficulty('medium'));
     document.getElementById('hardAIBtn').addEventListener('click', () => setAIDifficulty('hard'));
 
+    document.getElementById('size3Btn').addEventListener('click', () => setBoardSize(3));
+    document.getElementById('size4Btn').addEventListener('click', () => setBoardSize(4));
+    document.getElementById('size5Btn').addEventListener('click', () => setBoardSize(5));
+
     document.getElementById('chooseX').addEventListener('click', () => setPlayerSymbol('X'));
     document.getElementById('chooseO').addEventListener('click', () => setPlayerSymbol('O'));
 
