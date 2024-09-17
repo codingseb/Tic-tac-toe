@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const board = document.getElementById('board');
     const message = document.getElementById('message');
     const resetBtn = document.getElementById('resetBtn');
-    const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
     const onePlayerBtn = document.getElementById('onePlayerBtn');
     const twoPlayersBtn = document.getElementById('twoPlayersBtn');
@@ -19,15 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const shortcutPopup = document.getElementById('shortcutPopup');
     const closePopup = document.getElementById('closePopup');
 
+    initializeTheme();
     initializeLanguageSelect();
-
-    if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark');
-        themeToggle.checked = true;
-    } else {
-        body.classList.add('light');
-        themeToggle.checked = false;
-    }
 
     playerOptions.style.display = 'block';
     onePlayerBtn.classList.add('selected');
@@ -245,18 +237,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         return null;
     }
-
-    themeToggle.addEventListener('change', function () {
-        if (this.checked) {
-            body.classList.remove('light');
-            body.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            body.classList.remove('dark');
-            body.classList.add('light');
-            localStorage.setItem('theme', 'light');
-        }
-    });
 
     function setGameMode(mode) {
         gameMode = mode;
