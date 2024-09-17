@@ -122,10 +122,7 @@ input:checked+.slider .moon-icon {
     width: calc(300px / var(--board-size));
     height: calc(300px / var(--board-size));
     padding-bottom: 0px;
-    border-left: 2px solid #ffffff;
-    border-top: 2px solid #ffffff;
-    border-right: 2px solid #ffffff;
-    border-bottom: none;
+    border: 2px solid #ffffff;
     background-color: #1e1e1e;
     display: flex;
     justify-content: center;
@@ -137,7 +134,6 @@ input:checked+.slider .moon-icon {
 .cell:hover {
     background-color: #2e2e2e;
     transform: scale(1.05);
-    border-bottom: 2px solid #ffffff;
     z-index: 1;
 }
 

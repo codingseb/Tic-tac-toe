@@ -31,8 +31,8 @@ function updateBoardStyles(size) {
     styleElement.id = 'dynamic-board-styles';
     
     const styles = `
-        .cell:nth-last-child(-n+${size}) {
-            border-bottom: 2px solid #ffffff;
+        .cell:nth-child(n+${size+1}) {
+            margin-top: -2px;
         }
     `;
     
