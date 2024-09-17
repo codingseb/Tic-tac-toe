@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 
 <body>
@@ -22,7 +23,7 @@
             <option value="de">Deutsch</option>
             <option value="pt">Português</option>
             <option value="it">Italiano</option>
-          </select>
+        </select>
         <label class="switch">
             <input type="checkbox" id="themeToggle">
             <span class="slider round">
@@ -55,22 +56,16 @@
             </div>
         </div>
         <h3>Choisissez la difficulté :</h3>
-        <button id="easyAIBtn" class="selected">Facile</button>
+        <button id="easyAIBtn">Facile</button>
         <button id="mediumAIBtn">Moyen</button>
         <button id="hardAIBtn">Difficile</button>
     </div>
 
     <div id="game-container">
-        <div id="board">
-            <!-- Les cellules seront ajoutées ici dynamiquement -->
-        </div>
-        <svg id="lineOverlay" width="300" height="300">
-            <!-- La ligne de victoire sera ajoutée ici dynamiquement -->
-        </svg>
+        <div id="board"></div>
     </div>
 
     <p id="message"></p>
-
     <button id="resetBtn">Recommencer</button>
 
     <div id="shortcutPopup" class="popup">
@@ -81,9 +76,9 @@
                 <li>2 (clavier principal) : Mode 2 joueurs</li>
                 <li>X : Choisir X</li>
                 <li>O : Choisir O</li>
-                <li>F : Difficulté facile</li>
+                <li>E : Difficulté facile</li>
                 <li>M : Difficulté moyenne</li>
-                <li>D : Difficulté difficile</li>
+                <li>H : Difficulté difficile</li>
                 <li>R : Recommencer</li>
                 <li>L : Basculer entre mode clair/sombre</li>
             </ul>
@@ -111,7 +106,5 @@
 
     <script src="translations.js"></script>
     <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </body>
-
 </html>
