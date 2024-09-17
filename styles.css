@@ -207,7 +207,7 @@ button.selected {
 
 .symbol-button.selected .o-symbol,
 .symbol-button.selected .x-symbol {
-    stroke-width: 14;
+    stroke-width: 12;
 }
 
 .symbol-button .o-symbol {
@@ -266,7 +266,12 @@ body.light .symbol-button {
 }
 
 body.light .symbol-button.selected {
+    background-color: #e6f2ff;
     box-shadow: 0 0 10px #4a90e2;
+}
+
+body:not(.light) .symbol-button.selected {
+    background-color: #4a00b3; /* Légèrement plus clair que #3700b3 */
 }
 
 @keyframes pulsate {
@@ -350,3 +355,17 @@ body.dark .popup-content {
 body.dark .numpad-layout td {
     border-color: #555;
 }
+
+#languageSelect {
+    margin-right: 10px;
+    padding: 5px;
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  body.light #languageSelect {
+    background-color: #4a90e2;
+  }
