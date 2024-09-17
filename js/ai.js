@@ -76,10 +76,10 @@ function checkWinForMinimax(board) {
 
     for (let condition of winConditions) {
         if (condition.every(index => board[index] === aiSymbol)) {
-            return 10;
+            return 10000;
         }
         if (condition.every(index => board[index] === playerSymbol)) {
-            return -10;
+            return -10000;
         }
     }
 
@@ -103,7 +103,6 @@ function evaluateBoard(board) {
     for (const line of lines) {
         const aiCount = line.filter(cell => cell === aiSymbol).length;
         const playerCount = line.filter(cell => cell === playerSymbol).length;
-        const emptyCount = line.filter(cell => cell === '').length;
 
         if (aiCount === 0 && playerCount > 0) {
             score -= Math.pow(10, playerCount);
