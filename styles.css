@@ -407,7 +407,7 @@ body.light #languageSelect {
     body {
       display: flex;
       flex-direction: column;
-      padding: 10px;
+      padding-top: 20px;
     }
   
     .top-right-controls {
