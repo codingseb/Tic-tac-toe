@@ -24,7 +24,8 @@ const translations = {
         resetShortcut: "R : Reset",
         languageShortcut: "L : Change language",
         themeToggleShortcut: "T : Toggle light/dark mode",
-        numpadPlay: "Numpad to play:",
+        arrowKeysPlay: "Arrow keys : Select a cell",
+        spacePlay: "Space : Place a piece",
         close: "Close"
     },
     fr: {
@@ -52,7 +53,8 @@ const translations = {
         resetShortcut: "R : Recommencer",
         languageShortcut: "L : Changer de langue",
         themeToggleShortcut: "T : Basculer entre mode clair/sombre",
-        numpadPlay: "Pavé numérique pour jouer :",
+        arrowKeysPlay: "Flèches : Sélectionner une cellule",
+        spacePlay: "Espace : Placer une pièce",
         close: "Fermer"
     },
     es: {
@@ -80,7 +82,8 @@ const translations = {
         resetShortcut: "R : Reiniciar",
         languageShortcut: "L : Cambiar idioma",
         themeToggleShortcut: "T : Cambiar modo claro/oscuro",
-        numpadPlay: "Teclado numérico para jugar:",
+        arrowKeysPlay: "Teclas de flecha : Seleccionar una celda",
+        spacePlay: "Espacio : Colocar una pieza",
         close: "Cerrar"
     },
     de: {
@@ -108,7 +111,8 @@ const translations = {
         resetShortcut: "R : Zurücksetzen",
         languageShortcut: "L : Sprache ändern",
         themeToggleShortcut: "T : Hell-/Dunkelmodus umschalten",
-        numpadPlay: "Ziffernblock zum Spielen:",
+        arrowKeysPlay: "Pfeiltasten : Zelle auswählen",
+        spacePlay: "Leertaste : Spielstein setzen",
         close: "Schließen"
     },
     pt: {
@@ -136,7 +140,8 @@ const translations = {
         resetShortcut: "R : Reiniciar",
         languageShortcut: "L : Mudar idioma",
         themeToggleShortcut: "T : Alternar modo claro/escuro",
-        numpadPlay: "Teclado numérico para jogar:",
+        arrowKeysPlay: "Teclas de seta : Selecionar uma célula",
+        spacePlay: "Espaço : Colocar uma peça",
         close: "Fechar"
     },
     it: {
@@ -163,8 +168,8 @@ const translations = {
         hardDifficultyShortcut: "E : Difficoltà difficile",
         resetShortcut: "R : Ricomincia",
         languageShortcut: "L : Cambia lingua",
-        themeToggleShortcut: "T : Cambia modalità chiaro/scuro",
-        numpadPlay: "Tastierino numerico per giocare:",
+        arrowKeysPlay: "Tasti freccia : Seleziona una cella",
+        spacePlay: "Spazio : Posiziona un pezzo",
         close: "Chiudi"
     }
 };

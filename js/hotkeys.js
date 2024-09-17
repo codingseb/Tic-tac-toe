@@ -1,24 +1,36 @@
 function handleKeyPress(event) {
-    if (event.code.startsWith('Numpad')) {
-        const numpadMap = {
-            'Numpad7': 0, 'Numpad8': 1, 'Numpad9': 2,
-            'Numpad4': 3, 'Numpad5': 4, 'Numpad6': 5,
-            'Numpad1': 6, 'Numpad2': 7, 'Numpad3': 8
-        };
-        const cellIndex = numpadMap[event.code];
-        if (cellIndex !== undefined) {
-            const cell = document.querySelector(`.cell[data-index="${cellIndex}"]`);
-            if (cell) cell.click();
-        }
-        return;
-    }
-
-    switch (event.key.toLowerCase()) {
+    if (event.target.tagName === 'INPUT') return;
+    
+    switch(event.key) {
+        case 'ArrowUp':
+            selectedCellIndex = Math.max(0, selectedCellIndex - boardSize);
+            updateSelectedCell();
+            break;
+        case 'ArrowDown':
+            selectedCellIndex = Math.min(boardSize * boardSize - 1, selectedCellIndex + boardSize);
+            updateSelectedCell();
+            break;
+        case 'ArrowLeft':
+            if (selectedCellIndex % boardSize > 0) {
+                selectedCellIndex--;
+                updateSelectedCell();
+            }
+            break;
+        case 'ArrowRight':
+            if (selectedCellIndex % boardSize < boardSize - 1) {
+                selectedCellIndex++;
+                updateSelectedCell();
+            }
+            break;
+        case ' ':
+            makeMove(selectedCellIndex);
+            break;
+        // Autres raccourcis existants
         case '1':
-            if (!event.code.startsWith('Numpad')) setGameMode('1player');
+            setGameMode('1player');
             break;
         case '2':
-            if (!event.code.startsWith('Numpad')) setGameMode('2players');
+            setGameMode('2players');
             break;
         case 'x':
             setPlayerSymbol('X');

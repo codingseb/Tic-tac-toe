@@ -47,6 +47,8 @@ function updateInterface() {
         <li>${translate('resetShortcut')}</li>
         <li>${translate('languageShortcut')}</li>
         <li>${translate('themeToggleShortcut')}</li>
+        <li>${translate('arrowKeysPlay')}</li>
+        <li>${translate('spacePlay')}</li>
     `;
     document.querySelector('.popup-content h3').textContent = translate('numpadPlay');
     closePopup.textContent = translate('close');

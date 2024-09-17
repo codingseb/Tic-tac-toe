@@ -15,6 +15,7 @@ function createBoard() {
     updateBoardStyles(boardSize)
 
     gameBoard = Array(boardSize * boardSize).fill('');
+    updateSelectedCell();
 }
 
 function setBoardSize(size) {
@@ -55,6 +56,12 @@ function updateBoardStyles(size) {
     
     styleElement.textContent = styles;
     document.head.appendChild(styleElement);
+}
+
+function updateSelectedCell() {
+    document.querySelectorAll('.cell').forEach((cell, index) => {
+        cell.classList.toggle('selected', index === selectedCellIndex);
+    });
 }
 
 function makeMove(index, isAIMove = false) {

@@ -59,3 +59,4 @@ let aiDifficulty = 'easy';
 let playerSymbol = 'O';
 let aiSymbol = 'X';
 let winConditions = allWinConditions["3"];
+let selectedCellIndex = 0;
