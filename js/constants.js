@@ -7,27 +7,35 @@ const playerOptions = document.getElementById('playerOptions');
 const keyboardIcon = document.getElementById('keyboardIcon');
 const shortcutPopup = document.getElementById('shortcutPopup');
 const closePopup = document.getElementById('closePopup');
-const allWinConditions = 
-{ 
-    "3": 
-        [
-            [0, 1, 2], [3, 4, 5], [6, 7, 8],
-            [0, 3, 6], [1, 4, 7], [2, 5, 8],
-            [0, 4, 8], [2, 4, 6]
-        ],
-    "4": 
-        [
-            [0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15],
-            [0, 4, 8, 12], [1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15],
-            [0, 5, 10, 15], [3, 6, 9, 12]
-        ],
-    "5": 
-        [
-            [0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14], [15, 16, 17, 18, 19], [20, 21, 22, 23, 24],
-            [0, 5, 10, 15, 20], [1, 6, 11, 16, 21], [2, 7, 12, 17, 22], [3, 8, 13, 18, 23], [4, 9, 14, 19, 24],
-            [0, 6, 12, 18, 24], [4, 8, 12, 16, 20]
-        ]
-};
+const allWinConditions = (() => {
+    const conditions = {};
+
+    for (let size = 3; size <= 6; size++) {
+        conditions[size.toString()] = []
+
+        // Rows and columns
+        for (let i = 0; i < size; i++) {
+            const row = [];
+            const col = [];
+            for (let j = 0; j < size; j++) {
+                row.push(i * size + j);
+                col.push(j * size + i);
+            }
+            conditions[size.toString()].push(row, col);
+        }
+
+        // Diagonals
+        const diag1 = [];
+        const diag2 = [];
+        for (let i = 0; i < size; i++) {
+            diag1.push(i * size + i);
+            diag2.push(i * size + (size - 1 - i));
+        }
+        conditions[size.toString()].push(diag1, diag2);
+    }
+
+    return conditions;
+})();
 
 let aiMaxDepth = 4;
 let boardSize = 3;

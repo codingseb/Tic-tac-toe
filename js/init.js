@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('size3Btn').addEventListener('click', () => setBoardSize(3));
     document.getElementById('size4Btn').addEventListener('click', () => setBoardSize(4));
     document.getElementById('size5Btn').addEventListener('click', () => setBoardSize(5));
+    document.getElementById('size6Btn').addEventListener('click', () => setBoardSize(6));
 
     document.getElementById('chooseX').addEventListener('click', () => setPlayerSymbol('X'));
     document.getElementById('chooseO').addEventListener('click', () => setPlayerSymbol('O'));

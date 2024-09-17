@@ -58,7 +58,7 @@ function makeMove(index, isAIMove = false) {
             });
             message.textContent = translate('playerWin', currentPlayer);
             createFirework(currentPlayer); // Ajoutez cette ligne
-        }, 500);
+        }, 200);
     } else if (gameBoard.every(cell => cell !== '')) {
         message.textContent = translate('draw');
         gameActive = false;
@@ -71,7 +71,7 @@ function makeMove(index, isAIMove = false) {
             setTimeout(() => {
                 const aiMove = getBestMove();
                 makeMove(aiMove, true);
-            }, 500);
+            }, 200);
         }
     }
 }
