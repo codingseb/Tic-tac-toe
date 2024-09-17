@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     const board = document.getElementById('board');
     const message = document.getElementById('message');
     const resetBtn = document.getElementById('resetBtn');
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function createSVGSymbol(type) {
         const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.setAttribute("viewBox", "0 0 100 100");
-
+        
         if (type === 'X') {
             const line1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
             line1.setAttribute("x1", "20");
@@ -59,14 +59,14 @@ document.addEventListener('DOMContentLoaded', function () {
             line1.setAttribute("x2", "80");
             line1.setAttribute("y2", "80");
             line1.classList.add("x-symbol");
-
+            
             const line2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
             line2.setAttribute("x1", "80");
             line2.setAttribute("y1", "20");
             line2.setAttribute("x2", "20");
             line2.setAttribute("y2", "80");
             line2.classList.add("x-symbol");
-
+            
             svg.appendChild(line1);
             svg.appendChild(line2);
         } else {
@@ -75,26 +75,25 @@ document.addEventListener('DOMContentLoaded', function () {
             circle.setAttribute("cy", "50");
             circle.setAttribute("r", "30");
             circle.classList.add("o-symbol");
-
+            
             svg.appendChild(circle);
         }
-
+        
         return svg;
     }
 
     function makeMove(index, isAIMove = false) {
         if (gameBoard[index] !== '' || !gameActive) return;
         if (gameMode === '1player' && !isAIMove && currentPlayer !== playerSymbol) return;
-
+    
         gameBoard[index] = currentPlayer;
         const cell = document.querySelectorAll('.cell')[index];
         cell.innerHTML = '';
         cell.appendChild(createSVGSymbol(currentPlayer));
-
+        
         const winningLine = checkWin();
         if (winningLine) {
             gameActive = false;
-            drawWinLine(winningLine);
             setTimeout(() => {
                 winningLine.forEach(index => {
                     document.querySelectorAll('.cell')[index].classList.add('winning-cell');
@@ -107,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             message.textContent = `C'est au tour du joueur ${currentPlayer}`;
-
+            
             if (gameMode === '1player' && currentPlayer === aiSymbol && gameActive) {
                 setTimeout(() => {
                     const aiMove = getBestMove();
@@ -116,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
+    
 
     function checkWin() {
         const winConditions = [
@@ -132,45 +132,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return null;
     }
 
-    function drawWinLine(winningLine) {
-        const cellSize = 100;
-        const lineWidth = 5;
-
-        const positions = [
-            [0, 0], [1, 0], [2, 0],
-            [0, 1], [1, 1], [2, 1],
-            [0, 2], [1, 2], [2, 2]
-        ];
-
-        const start = positions[winningLine[0]];
-        const end = positions[winningLine[2]];
-
-        const line = document.createElement('div');
-        line.classList.add('win-line');
-
-        const startX = start[0] * cellSize + cellSize / 2;
-        const startY = start[1] * cellSize + cellSize / 2;
-        const endX = end[0] * cellSize + cellSize / 2;
-        const endY = end[1] * cellSize + cellSize / 2;
-
-        const dx = endX - startX;
-        const dy = endY - startY;
-        const length = Math.sqrt(dx * dx + dy * dy);
-        const angle = Math.atan2(dy, dx);
-
-        const offsetX = (lineWidth / 2) * Math.sin(angle);
-        const offsetY = (lineWidth / 2) * Math.cos(angle);
-
-        line.style.width = `${length}px`;
-        line.style.height = `${lineWidth}px`;
-        line.style.left = `${startX - offsetX}px`;
-        line.style.top = `${startY + offsetY}px`;
-        line.style.transform = `rotate(${angle}rad)`;
-        line.style.transformOrigin = 'left center';
-
-        board.appendChild(line);
-    }
-
     function resetGame() {
         gameBoard = ['', '', '', '', '', '', '', '', ''];
         gameActive = true;
@@ -180,8 +141,6 @@ document.addEventListener('DOMContentLoaded', function () {
             cell.innerHTML = '';
             cell.classList.remove('winning-cell');
         });
-        const winLine = document.querySelector('.win-line');
-        if (winLine) winLine.remove();
 
         document.getElementById('chooseX').classList.toggle('selected', playerSymbol === 'X');
         document.getElementById('chooseO').classList.toggle('selected', playerSymbol === 'O');
@@ -283,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return null;
     }
 
-    themeToggle.addEventListener('change', function () {
+    themeToggle.addEventListener('change', function() {
         if (this.checked) {
             body.classList.remove('light');
             body.classList.add('dark');
@@ -322,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('easyAIBtn').addEventListener('click', () => setAIDifficulty('easy'));
     document.getElementById('mediumAIBtn').addEventListener('click', () => setAIDifficulty('medium'));
     document.getElementById('hardAIBtn').addEventListener('click', () => setAIDifficulty('hard'));
-
+    
     function setPlayerSymbol(symbol) {
         playerSymbol = symbol;
         aiSymbol = symbol === 'X' ? 'O' : 'X';
@@ -330,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('chooseO').classList.toggle('selected', symbol === 'O');
         resetGame();
     }
-
+    
     document.getElementById('chooseX').addEventListener('click', () => setPlayerSymbol('X'));
     document.getElementById('chooseO').addEventListener('click', () => setPlayerSymbol('O'));
 
@@ -379,27 +338,27 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
         }
     }
-
+    
     document.addEventListener('keydown', handleKeyPress);
-
+    
     keyboardIcon.addEventListener('click', () => {
         shortcutPopup.style.display = 'block';
     });
-
+    
     closePopup.addEventListener('click', () => {
         shortcutPopup.style.display = 'none';
     });
-
+    
     window.addEventListener('click', (event) => {
         if (event.target === shortcutPopup) {
             shortcutPopup.style.display = 'none';
         }
     });
-
+    
     createBoard();
     resetBtn.addEventListener('click', resetGame);
     setAIDifficulty('easy');
     setPlayerSymbol('O');
     setGameMode('1player');
     resetGame();
-});
+})    

@@ -30,15 +30,33 @@
     
     <div id="playerOptions">
         <h3>Choisissez votre symbole :</h3>
-        <button id="chooseX">X</button>
-        <button id="chooseO" class="selected">O</button>
+        <div class="symbol-choice">
+            <div id="chooseO" class="symbol-button selected">
+                <svg viewBox="0 0 100 100" class="o-symbol">
+                    <circle cx="50" cy="50" r="40" />
+                </svg>
+            </div>
+            <div id="chooseX" class="symbol-button">
+                <svg viewBox="0 0 100 100" class="x-symbol">
+                    <line x1="20" y1="20" x2="80" y2="80" />
+                    <line x1="80" y1="20" x2="20" y2="80" />
+                </svg>
+            </div>
+        </div>
         <h3>Choisissez la difficulté :</h3>
         <button id="easyAIBtn" class="selected">Facile</button>
         <button id="mediumAIBtn">Moyen</button>
         <button id="hardAIBtn">Difficile</button>
     </div>
     
-    <div id="board"></div>
+    <div id="game-container">
+        <div id="board">
+            <!-- Les cellules seront ajoutées ici dynamiquement -->
+        </div>
+        <svg id="lineOverlay" width="300" height="300">
+            <!-- La ligne de victoire sera ajoutée ici dynamiquement -->
+        </svg>
+    </div>
     
     <p id="message"></p>
     
