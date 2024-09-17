@@ -123,6 +123,6 @@ function resetGame() {
         setTimeout(() => {
             const aiMove = getBestMove();
             makeMove(aiMove, true);
-        }, 500);
+        }, 50);
     }
 }
