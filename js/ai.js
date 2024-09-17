@@ -76,10 +76,10 @@ function checkWinForMinimax(board) {
 
     for (let condition of winConditions) {
         if (condition.every(index => board[index] === aiSymbol)) {
-            return 10000;
+            return 100000;
         }
         if (condition.every(index => board[index] === playerSymbol)) {
-            return -10000;
+            return -100000;
         }
     }
 

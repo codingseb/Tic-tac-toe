@@ -7,31 +7,42 @@ const playerOptions = document.getElementById('playerOptions');
 const keyboardIcon = document.getElementById('keyboardIcon');
 const shortcutPopup = document.getElementById('shortcutPopup');
 const closePopup = document.getElementById('closePopup');
+const toWinLabel = document.getElementById('toWin');
 const allWinConditions = (() => {
     const conditions = {};
 
     for (let size = 3; size <= 6; size++) {
-        conditions[size.toString()] = []
+        conditions[size.toString()] = {};
 
-        // Rows and columns
-        for (let i = 0; i < size; i++) {
-            const row = [];
-            const col = [];
-            for (let j = 0; j < size; j++) {
-                row.push(i * size + j);
-                col.push(j * size + i);
+        for (let winLength = 3; winLength <= size; winLength++) {
+            conditions[size.toString()][winLength.toString()] = [];
+
+            // Rows and columns
+            for (let i = 0; i < size; i++) {
+                for (let j = 0; j <= size - winLength; j++) {
+                    const row = [];
+                    const col = [];
+                    for (let k = 0; k < winLength; k++) {
+                        row.push(i * size + (j + k));
+                        col.push((j + k) * size + i);
+                    }
+                    conditions[size.toString()][winLength.toString()].push(row, col);
+                }
             }
-            conditions[size.toString()].push(row, col);
-        }
 
-        // Diagonals
-        const diag1 = [];
-        const diag2 = [];
-        for (let i = 0; i < size; i++) {
-            diag1.push(i * size + i);
-            diag2.push(i * size + (size - 1 - i));
+            // Diagonals
+            for (let i = 0; i <= size - winLength; i++) {
+                for (let j = 0; j <= size - winLength; j++) {
+                    const diag1 = [];
+                    const diag2 = [];
+                    for (let k = 0; k < winLength; k++) {
+                        diag1.push((i + k) * size + (j + k));
+                        diag2.push((i + k) * size + (j + winLength - 1 - k));
+                    }
+                    conditions[size.toString()][winLength.toString()].push(diag1, diag2);
+                }
+            }
         }
-        conditions[size.toString()].push(diag1, diag2);
     }
 
     return conditions;
@@ -39,6 +50,7 @@ const allWinConditions = (() => {
 
 let aiMaxDepth = 4;
 let boardSize = 3;
+let winLength = 3;
 let currentPlayer = 'O';
 let gameBoard = ['', '', '', '', '', '', '', '', ''];
 let gameActive = true;

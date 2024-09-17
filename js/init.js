@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('size5Btn').addEventListener('click', () => setBoardSize(5));
     document.getElementById('size6Btn').addEventListener('click', () => setBoardSize(6));
 
+    document.getElementById('win3Btn').addEventListener('click', () => setWinLength(3));
+    document.getElementById('win4Btn').addEventListener('click', () => setWinLength(4));
+    document.getElementById('win5Btn').addEventListener('click', () => setWinLength(5));
+    document.getElementById('win6Btn').addEventListener('click', () => setWinLength(6));
+
     document.getElementById('chooseX').addEventListener('click', () => setPlayerSymbol('X'));
     document.getElementById('chooseO').addEventListener('click', () => setPlayerSymbol('O'));
 
@@ -36,9 +41,10 @@ document.addEventListener('DOMContentLoaded', function () {
             shortcutPopup.style.display = 'none';
         }
     });
-
-    createBoard();
+    
     resetBtn.addEventListener('click', resetGame);
+    
+    setBoardSize(3);
     setAIDifficulty('easy');
     setPlayerSymbol('O');
     setGameMode('1player');

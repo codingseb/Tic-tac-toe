@@ -19,10 +19,27 @@ function createBoard() {
 
 function setBoardSize(size) {
     boardSize = size;
-    winConditions = allWinConditions[size.toString()];
+    winLength = size;
+    winConditions = allWinConditions[size.toString()][winLength.toString()];
     document.querySelectorAll('.board-size-buttons button').forEach(btn => btn.classList.remove('selected'));
     document.getElementById(`size${size}Btn`).classList.add('selected');
+
+    document.querySelectorAll('.win-condition-buttons button').forEach(btn => btn.classList.remove('selected'));
+    document.getElementById(`win${size}Btn`).classList.add('selected');
+
+    document.getElementById('win4Btn').style.display = size >= 4 ? 'inline-block' : 'none';
+    document.getElementById('win5Btn').style.display = size >= 5 ? 'inline-block' : 'none';
+    document.getElementById('win6Btn').style.display = size >= 6 ? 'inline-block' : 'none';
+
     createBoard();
+    resetGame();
+}
+
+function setWinLength(length) {
+    winLength = length;
+    winConditions = allWinConditions[boardSize.toString()][winLength.toString()];
+    document.querySelectorAll('.win-condition-buttons button').forEach(btn => btn.classList.remove('selected'));
+    document.getElementById(`win${length}Btn`).classList.add('selected');
     resetGame();
 }
 

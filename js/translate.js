@@ -31,6 +31,7 @@ function updateInterface() {
     document.getElementById('hardAIBtn').textContent = translate('hard');
     resetBtn.textContent = translate('reset');
     message.textContent = translate('playerTurn', currentPlayer);
+    toWinLabel.textContent = translate('toWin'),
 
     // Mise à jour de la popup des raccourcis
     document.querySelector('.popup-content h2').textContent = translate('shortcuts');
