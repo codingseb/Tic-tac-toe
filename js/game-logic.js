@@ -80,7 +80,7 @@ function makeMove(index, isAIMove = false) {
                 document.querySelectorAll('.cell')[index].classList.add('winning-cell');
             });
             message.textContent = translate('playerWin', currentPlayer);
-            createFirework(currentPlayer); // Ajoutez cette ligne
+            createFirework(currentPlayer); 
         }, 50);
     } else if (gameBoard.every(cell => cell !== '')) {
         message.textContent = translate('draw');
@@ -104,6 +104,10 @@ function makeMove(index, isAIMove = false) {
 function undoMove() {
     if (moveHistory.length === 0) return;
 
+    document.querySelectorAll('.winning-cell').forEach(cell => {
+        cell.classList.remove('winning-cell');
+    });
+
     if (gameMode === '1player') {
         let lastMove = moveHistory.pop();
         gameBoard[lastMove.index] = '';
@@ -111,6 +115,7 @@ function undoMove() {
         aiCell.innerHTML = '';
 
         if (moveHistory.length > 0) {
+            if(gameActive || lastMove.player !== playerSymbol)
             lastMove = moveHistory.pop();
             gameBoard[lastMove.index] = '';
             const playerCell = document.querySelectorAll('.cell')[lastMove.index];
@@ -123,7 +128,7 @@ function undoMove() {
             }, 50);
         }
 
-        currentPlayer = lastMove.player;        
+        currentPlayer = lastMove.player;   
         
     } else {
         // Mode 2 joueurs : annuler simplement le dernier coup
