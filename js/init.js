@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     
+    undoBtn.addEventListener('click', undoMove);
     resetBtn.addEventListener('click', resetGame);
     
     setBoardSize(3);

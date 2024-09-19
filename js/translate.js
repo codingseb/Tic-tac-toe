@@ -21,6 +21,8 @@ function translate(key, ...args) {
 }
 
 function updateInterface() {
+    updateUndoButton();
+    undoBtn.title = translate('undo');
     document.querySelector('h1').textContent = translate('title');
     onePlayerBtn.textContent = translate('onePlayer');
     twoPlayersBtn.textContent = translate('twoPlayers');

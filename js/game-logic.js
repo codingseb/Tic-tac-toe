@@ -62,6 +62,11 @@ function makeMove(index, isAIMove = false) {
     if (gameBoard[index] !== '' || !gameActive) return;
     if (gameMode === '1player' && !isAIMove && currentPlayer !== playerSymbol) return;
 
+    moveHistory.push({
+        index: index,
+        player: currentPlayer
+    });
+
     gameBoard[index] = currentPlayer;
     const cell = document.querySelectorAll('.cell')[index];
     cell.innerHTML = '';
@@ -92,6 +97,46 @@ function makeMove(index, isAIMove = false) {
             }, 50);
         }
     }
+
+    updateUndoButton();
+}
+
+function undoMove() {
+    if (moveHistory.length === 0) return;
+
+    if (gameMode === '1player') {
+        let lastMove = moveHistory.pop();
+        gameBoard[lastMove.index] = '';
+        const aiCell = document.querySelectorAll('.cell')[lastMove.index];
+        aiCell.innerHTML = '';
+
+        if (moveHistory.length > 0) {
+            lastMove = moveHistory.pop();
+            gameBoard[lastMove.index] = '';
+            const playerCell = document.querySelectorAll('.cell')[lastMove.index];
+            playerCell.innerHTML = '';
+        }
+        else if (playerSymbol === 'X' && gameActive) {
+            setTimeout(() => {
+                const aiMove = getBestMove();
+                makeMove(aiMove, true);
+            }, 50);
+        }
+
+        currentPlayer = lastMove.player;        
+        
+    } else {
+        // Mode 2 joueurs : annuler simplement le dernier coup
+        const lastMove = moveHistory.pop();
+        gameBoard[lastMove.index] = '';
+        const cell = document.querySelectorAll('.cell')[lastMove.index];
+        cell.innerHTML = '';
+        currentPlayer = lastMove.player;
+    }
+
+    gameActive = true;
+    updateInterface();
+    updateUndoButton();
 }
 
 function checkWin() {
@@ -106,6 +151,9 @@ function checkWin() {
 }
 
 function resetGame() {
+    moveHistory = [];
+    updateUndoButton();
+
     gameBoard = Array(boardSize * boardSize).fill('');
     gameActive = true;
     currentPlayer = 'O';
@@ -125,4 +173,8 @@ function resetGame() {
             makeMove(aiMove, true);
         }, 50);
     }
+}
+
+function updateUndoButton() {
+    undoBtn.disabled = moveHistory.length === 0;
 }

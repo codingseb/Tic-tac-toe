@@ -1,5 +1,6 @@
 const board = document.getElementById('board');
 const message = document.getElementById('message');
+const undoBtn = document.getElementById('undoBtn');
 const resetBtn = document.getElementById('resetBtn');
 const onePlayerBtn = document.getElementById('onePlayerBtn');
 const twoPlayersBtn = document.getElementById('twoPlayersBtn');
@@ -62,3 +63,4 @@ let winConditions = allWinConditions["3"];
 let keyboardPlayEnabled = false;
 let selectedCellIndex = 0;
 let animationInProgress = false;
+let moveHistory = [];
