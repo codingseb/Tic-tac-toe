@@ -20,7 +20,7 @@ function createBoard() {
 
 function setBoardSize(size) {
 
-    if(boardSize === 6){
+    if(size === 6){
         aiMaxDepth = 4;
     }
     else{
