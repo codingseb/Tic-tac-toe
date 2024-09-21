@@ -54,16 +54,20 @@ function handleKeyPress(event) {
 function handleKeyboardNavigation(key) {
     switch(key) {
         case 'ArrowUp':
-            selectedCellIndex = Math.max(0, selectedCellIndex - boardSize);
+            if (selectedCellIndex - boardSize >= 0) 
+                selectedCellIndex = selectedCellIndex - boardSize;
             break;
         case 'ArrowDown':
-            selectedCellIndex = Math.min(boardSize * boardSize - 1, selectedCellIndex + boardSize);
+            if (selectedCellIndex + boardSize < boardSize * boardSize) 
+                selectedCellIndex = selectedCellIndex + boardSize;
             break;
         case 'ArrowLeft':
-            if (selectedCellIndex % boardSize > 0) selectedCellIndex--;
+            if (selectedCellIndex % boardSize > 0) 
+                selectedCellIndex--;
             break;
         case 'ArrowRight':
-            if (selectedCellIndex % boardSize < boardSize - 1) selectedCellIndex++;
+            if (selectedCellIndex % boardSize < boardSize - 1) 
+                selectedCellIndex++;
             break;
         case ' ':
             playCell(selectedCellIndex);
@@ -74,6 +78,7 @@ function handleKeyboardNavigation(key) {
 
 function toggleKeyboardPlay() {
     keyboardPlayEnabled = !keyboardPlayEnabled;
+    localStorage.setItem('KeyBoardPlay', keyboardPlayEnabled);
     if (keyboardPlayEnabled) {
         updateSelectedCell();
     } else {
