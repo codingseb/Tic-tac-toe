@@ -2,7 +2,7 @@ function getBestMove() {
     if (aiDifficulty === 'easy') {
         return getRandomMove();
     } else if (aiDifficulty === 'medium') {
-        return Math.random() < 0.5 ? getBestMoveHard() : getRandomMove();
+        return Math.random() < 0.6 ? getBestMoveHard() : getRandomMove();
     } else { 
         // First move random
         if (gameBoard.every(cell => cell === '')) {
