@@ -28,6 +28,7 @@ function setBoardSize(size) {
     }
 
     boardSize = size;
+    localStorage.setItem('BoardSize', size);
     winLength = size;
     winConditions = allWinConditions[size.toString()][winLength.toString()];
     document.querySelectorAll('.board-size-buttons button').forEach(btn => btn.classList.remove('selected'));

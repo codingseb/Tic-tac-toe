@@ -45,10 +45,10 @@ document.addEventListener('DOMContentLoaded', function () {
     undoBtn.addEventListener('click', undoMove);
     resetBtn.addEventListener('click', resetGame);
     
-    setBoardSize(3);
-    setAIDifficulty('easy');
-    setPlayerSymbol('O');
-    setGameMode('1player');
+    setBoardSize(localStorage.getItem('BoardSize') ? parseInt(localStorage.getItem('BoardSize')) : 3);
+    setAIDifficulty(localStorage.getItem('AIDifficulty') || 'easy');
+    setPlayerSymbol(localStorage.getItem('PlayerSymbol') ||'O');
+    setGameMode(localStorage.getItem('GameMode') ||'1player');
     resetGame();
     updateInterface();
 });

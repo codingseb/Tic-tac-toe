@@ -19,6 +19,7 @@ function playCell(index){
 
 function setGameMode(mode) {
     gameMode = mode;
+    localStorage.setItem('GameMode', mode);
     if (mode === '1player') {
         onePlayerBtn.classList.add('selected');
         twoPlayersBtn.classList.remove('selected');
@@ -33,6 +34,7 @@ function setGameMode(mode) {
 
 function setAIDifficulty(difficulty) {
     aiDifficulty = difficulty;
+    localStorage.setItem('AIDifficulty', difficulty);
     document.querySelectorAll('#playerOptions button[id$="AIBtn"]').forEach(btn => btn.classList.remove('selected'));
     document.getElementById(`${difficulty}AIBtn`).classList.add('selected');
     resetGame();
@@ -40,6 +42,7 @@ function setAIDifficulty(difficulty) {
 
 function setPlayerSymbol(symbol) {
     playerSymbol = symbol;
+    localStorage.setItem('PlayerSymbol', symbol);
     aiSymbol = symbol === 'X' ? 'O' : 'X';
     document.getElementById('chooseX').classList.toggle('selected', symbol === 'X');
     document.getElementById('chooseO').classList.toggle('selected', symbol === 'O');

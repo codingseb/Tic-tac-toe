@@ -60,7 +60,7 @@ let aiDifficulty = 'easy';
 let playerSymbol = 'O';
 let aiSymbol = 'X';
 let winConditions = allWinConditions["3"];
-let keyboardPlayEnabled = false;
+let keyboardPlayEnabled = localStorage.getItem('KeyBoardPlay') == 'true';
 let selectedCellIndex = 0;
 let animationInProgress = false;
 let moveHistory = [];
