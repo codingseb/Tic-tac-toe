@@ -47,8 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     setBoardSize(localStorage.getItem('BoardSize') ? parseInt(localStorage.getItem('BoardSize')) : 3);
     setAIDifficulty(localStorage.getItem('AIDifficulty') || 'easy');
-    setPlayerSymbol(localStorage.getItem('PlayerSymbol') ||'O');
     setGameMode(localStorage.getItem('GameMode') ||'1player');
-    resetGame();
+    setPlayerSymbol(localStorage.getItem('PlayerSymbol') ||'O');
     updateInterface();
 });
