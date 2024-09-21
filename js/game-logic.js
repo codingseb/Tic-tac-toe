@@ -19,6 +19,14 @@ function createBoard() {
 }
 
 function setBoardSize(size) {
+
+    if(boardSize === 6){
+        aiMaxDepth = 4;
+    }
+    else{
+        aiMaxDepth = 5;
+    }
+
     boardSize = size;
     winLength = size;
     winConditions = allWinConditions[size.toString()][winLength.toString()];

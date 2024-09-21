@@ -49,7 +49,7 @@ const allWinConditions = (() => {
     return conditions;
 })();
 
-let aiMaxDepth = 4;
+let aiMaxDepth = 5;
 let boardSize = 3;
 let winLength = 3;
 let currentPlayer = 'O';

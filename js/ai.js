@@ -39,8 +39,8 @@ function getBestMoveHard() {
 }
 
 function minimax(board, depth, isMaximizing, alpha, beta) {
-    if (depth === aiMaxDepth || checkWinForMinimax(board) !== null) {
-        return evaluateBoard(board);
+    if (depth === aiMaxDepth || checkWinForMinimax(board, depth) !== null) {
+        return evaluateBoard(board, depth);
     }
 
     if (isMaximizing) {
@@ -72,14 +72,14 @@ function minimax(board, depth, isMaximizing, alpha, beta) {
     }
 }
 
-function checkWinForMinimax(board) {
+function checkWinForMinimax(board, depth) {
 
     for (let condition of winConditions) {
         if (condition.every(index => board[index] === aiSymbol)) {
-            return 1000000;
+            return 100 * (aiMaxDepth - depth + 1);
         }
         if (condition.every(index => board[index] === playerSymbol)) {
-            return -1000000;
+            return -100 * (aiMaxDepth - depth + 1);
         }
     }
 
@@ -91,8 +91,8 @@ function checkWinForMinimax(board) {
 }
 
 // heuristics functions
-function evaluateBoard(board) {
-    const result = checkWinForMinimax(board);
+function evaluateBoard(board, depth) {
+    const result = checkWinForMinimax(board, depth);
     if (result !== null) {
         return result;
     }
