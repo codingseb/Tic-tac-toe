@@ -65,7 +65,7 @@ function createDrawAnimation() {
     const redCircle = createSVGSymbol('O');
     redCircle.style.position = 'absolute';
     redCircle.style.left = '0';
-    redCircle.style.bottom = '20px';
+    redCircle.style.bottom = '65px';
     redCircle.style.width = '100px';
     redCircle.style.height = '100px';
     const circleElement = redCircle.querySelector('.o-symbol');
@@ -77,7 +77,7 @@ function createDrawAnimation() {
     const blueX = createSVGSymbol('X');
     blueX.style.position = 'absolute';
     blueX.style.right = '0';
-    blueX.style.bottom = '20px';
+    blueX.style.bottom = '65px';
     blueX.style.width = '100px';
     blueX.style.height = '100px';
     blueX.querySelectorAll('.x-symbol').forEach(line => {
@@ -90,9 +90,9 @@ function createDrawAnimation() {
     const handshakeIcon = document.createElement('div');
     handshakeIcon.innerHTML = '🤝';
     handshakeIcon.style.position = 'absolute';
-    handshakeIcon.style.fontSize = '50px';
+    handshakeIcon.style.fontSize = '40px';
     handshakeIcon.style.left = '50%';
-    handshakeIcon.style.bottom = '40px';
+    handshakeIcon.style.bottom = '90px';
     handshakeIcon.style.transform = 'translateX(-50%) scale(0)';
     handshakeIcon.style.opacity = '0';
     animationContainer.appendChild(handshakeIcon);
