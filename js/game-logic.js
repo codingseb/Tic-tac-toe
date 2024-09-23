@@ -29,7 +29,6 @@ function setBoardSize(size) {
 
     boardSize = size;
     localStorage.setItem('BoardSize', size);
-    winLength = size;
     winConditions = allWinConditions[size.toString()][winLength.toString()];
     document.querySelectorAll('.board-size-buttons button').forEach(btn => btn.classList.remove('selected'));
     document.getElementById(`size${size}Btn`).classList.add('selected');
@@ -47,6 +46,7 @@ function setBoardSize(size) {
 
 function setWinLength(length) {
     winLength = length;
+    localStorage.setItem('WinLength', length);
     winConditions = allWinConditions[boardSize.toString()][winLength.toString()];
     document.querySelectorAll('.win-condition-buttons button').forEach(btn => btn.classList.remove('selected'));
     document.getElementById(`win${length}Btn`).classList.add('selected');

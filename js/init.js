@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('mediumAIBtn').addEventListener('click', () => setAIDifficulty('medium'));
     document.getElementById('hardAIBtn').addEventListener('click', () => setAIDifficulty('hard'));
 
-    document.getElementById('size3Btn').addEventListener('click', () => setBoardSize(3));
-    document.getElementById('size4Btn').addEventListener('click', () => setBoardSize(4));
-    document.getElementById('size5Btn').addEventListener('click', () => setBoardSize(5));
-    document.getElementById('size6Btn').addEventListener('click', () => setBoardSize(6));
+    document.getElementById('size3Btn').addEventListener('click', () => { setBoardSize(3); setWinLength(3) ;});
+    document.getElementById('size4Btn').addEventListener('click', () => { setBoardSize(4); setWinLength(4) ;});
+    document.getElementById('size5Btn').addEventListener('click', () => { setBoardSize(5); setWinLength(5) ;});
+    document.getElementById('size6Btn').addEventListener('click', () => { setBoardSize(6); setWinLength(6) ;});
 
     document.getElementById('win3Btn').addEventListener('click', () => setWinLength(3));
     document.getElementById('win4Btn').addEventListener('click', () => setWinLength(4));
@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
     resetBtn.addEventListener('click', resetGame);
     
     setBoardSize(localStorage.getItem('BoardSize') ? parseInt(localStorage.getItem('BoardSize')) : 3);
+    setWinLength(localStorage.getItem('WinLength') ? parseInt(localStorage.getItem('WinLength')) : boardSize);
     setAIDifficulty(localStorage.getItem('AIDifficulty') || 'easy');
     setGameMode(localStorage.getItem('GameMode') ||'1player');
     setPlayerSymbol(localStorage.getItem('PlayerSymbol') ||'O');
